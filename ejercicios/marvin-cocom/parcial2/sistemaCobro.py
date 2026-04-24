@@ -56,24 +56,27 @@ def mostrar_ticket(producto, subtotal, iva, total_final):
 
 
 # -------- FLUJO PRINCIPAL DEL PROGRAMA --------
+def main():
+    print("--- Sistema de Cobro v1.0 ---")
 
-print("--- Sistema de Cobro v1.0 ---")
+    # Entrada de datos
+    producto = input("Nombre del producto: ")
+    precio = float(input("Precio unitario: "))
+    cantidad = int(input("Cantidad: "))
 
-# Entrada de datos
-producto = input("Nombre del producto: ")
-precio = float(input("Precio unitario: "))
-cantidad = int(input("Cantidad: "))
+    # Cálculos usando funciones
+    subtotal = calcular_subtotal(precio, cantidad)
 
-# Cálculos usando funciones
-subtotal = calcular_subtotal(precio, cantidad)
+    descuento = calcular_descuento(subtotal)
 
-descuento = calcular_descuento(subtotal)
+    subtotal_con_descuento = subtotal - descuento
 
-subtotal_con_descuento = subtotal - descuento
+    iva = calcular_iva(subtotal_con_descuento)
 
-iva = calcular_iva(subtotal_con_descuento)
+    total_final = subtotal_con_descuento + iva
 
-total_final = subtotal_con_descuento + iva
+    # Mostrar resultados
+    mostrar_ticket(producto, subtotal, iva, total_final)
 
-# Mostrar resultados
-mostrar_ticket(producto, subtotal, iva, total_final)
+if __name__ == "__main__":
+    main()
